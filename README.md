@@ -1,6 +1,8 @@
 # Real time 3D object remote rendering in 5G
 
-## Current system
+## Tested systems
+
+### TMIT VKE4
 
 HW: Virtual machine with NVIDIA Tesla V100 GPU used as a vGPU
 
@@ -11,6 +13,21 @@ Software:
 - NVIDIA CloudXR SDK (4.0)
 - NVIDIA Graphics Driver (451.48_grid_win10_server2016_server2019_64bit_international)
 - Steam and SteamVR (latest, not required for `CloudXRServerSample.exe`)
+
+### Desktop computer
+
+HW: NVIDIA GeForce RTX 3050
+
+OS: Windows 11
+
+Software:
+
+- NVIDIA CloudXR SDK (4.0.1)
+- NVIDIA Graphics Driver (32.0.15.6094)
+  - This is the default driver, that was installed through Windows Update, no other configuration was needed
+- Steam and SteamVR
+
+I want to thank Simonyi Károly Collegium for providing this extra hardware for testing.
 
 ## Usage
 

@@ -1,0 +1,37 @@
+# Blender 4.2.3 LTS MTL File: 'dutch_ship_large_01_4k.blend'
+# www.blender.org
+
+newmtl dutch_ship_large_01_hull
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd textures/dutch_ship_large_01_hull_diff_4k.png
+map_Ns textures/dutch_ship_large_01_hull_rough_4k.png
+map_refl textures/dutch_ship_large_01_hull_metal_4k.png
+map_Bump -bm 1.000000 textures/dutch_ship_large_01_hull_nor_gl_4k.png
+
+newmtl dutch_ship_large_01_rigging
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd textures/dutch_ship_large_01_rigging_diff_4k.png
+map_Ns textures/dutch_ship_large_01_rigging_rough_4k.png
+map_refl textures/dutch_ship_large_01_rigging_metal_4k.png
+map_Bump -bm 1.000000 textures/dutch_ship_large_01_rigging_nor_gl_4k.png
+
+newmtl dutch_ship_large_01_sails
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd textures/dutch_ship_large_01_sails_diff_4k.png
+map_Ns textures/dutch_ship_large_01_sails_rough_4k.png
+map_d textures/dutch_ship_large_01_sails_alpha_4k.png
+map_Bump -bm 1.000000 textures/dutch_ship_large_01_sails_nor_gl_4k.png

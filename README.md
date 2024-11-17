@@ -31,7 +31,8 @@ I want to thank Simonyi Károly Collegium for providing this extra hardware for 
 
 ## Usage
 
-- Replace the `lucy.obj` file in `C:\Program Files\NVIDIA Corporation\CloudXR\VRDriver\CloudXRRemoteHMD\bin\win64\assets\models\` with your model of choice.
+- Replace the `.obj` file in `C:\Program Files\NVIDIA Corporation\CloudXR\VRDriver\CloudXRRemoteHMD\bin\win64\assets\models\` with your model of choice. (In 4.0 this is `lucy.obj` and in 4.0.1 this is `ship_large.obj`)
+  - Alternatively you can symlink the new `.obj` by executing `New-Item -Path .\ship_large.obj -ItemType SymbolicLink -Value .\exported.obj`
 - Start `C:\Program Files\NVIDIA Corporation\CloudXR\VRDriver\CloudXRRemoteHMD\bin\win64\CloudXRServerSample.exe`.
 - Connect the client to the server.
 

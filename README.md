@@ -58,6 +58,8 @@ Statistics are from Blender.
 
 ## Android client modifications
 
+The Android app used in my theis is based on the [NVIDIA hello_cloudxr_c sample](https://github.com/NVIDIA/cloudxr-arcore/tree/master/arcore-android-sdk/samples/hello_cloudxr_c).
+
 TODO
 
 ## Log parsing and evaluation

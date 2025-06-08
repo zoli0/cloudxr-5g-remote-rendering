@@ -54,7 +54,7 @@ Statistics are from Blender.
 | lucy.obj (default in CloudXR 4.0, unknown license, not included in this repo) | 49987 | 99970 | 99970 |
 | rock_cat_bush.obj (example complex model created from objects above) | 418008 | 794262 | 811375 |
 | ship_large.obj (default in CloudXR 4.0.1) | 11749 | 9974 | 20636 |
-| test2.obj (model used in my thesis, modified from rock_cat_bush.obj to have only a part of the model appear in the scene) | TODO | | TODO | | TODO |
+| test2.obj (model used in my thesis, modified from rock_cat_bush.obj to have only a part of the model appear in the scene) | TODO | TODO | TODO |
 
 ## Android client modifications
 

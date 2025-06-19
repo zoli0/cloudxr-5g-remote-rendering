@@ -65,3 +65,9 @@ TODO
 ## Log parsing and evaluation
 
 TODO
+
+## GPU Finder
+
+I used [GPU Finder](https://github.com/doitintl/gpu-finder/) to find available GPUs to run CloudXR in Google Cloud.
+
+The patches and the output can be found in the `gpu-finder` folder.

@@ -1,0 +1,320 @@
+(.venv) zoli0@local:~/gpu-finder$ ./gpu-finder.py 
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-d has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west3-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west2-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west2-a has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-central2-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-central2-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+Machine type n1-standard-1 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 5 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west2
+There are 2 zones to try in europe-west2
+Creating instance number 1 of 1 in europe-west2-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west2-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west2-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-1 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west2-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-1', 'zone': 'europe-west2-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west2, moving to next region
+Attempting to create instances in europe-west3
+There are 1 zones to try in europe-west3
+Creating instance number 1 of 1 in europe-west3-b, zone 1 out of 1 attempted.
+Creating instance demo-instance-1-europe-west3-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west3-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-1 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west3-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-1', 'zone': 'europe-west3-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west3, moving to next region
+Attempting to create instances in europe-west4
+There are 3 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-a, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west4-a.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-a' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-1 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west4-a zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-1', 'zone': 'europe-west4-a', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+Attempting to create instances in europe-west1
+There are 3 zones to try in europe-west1
+Creating instance number 1 of 1 in europe-west1-b, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west1-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-1 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west1-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-1', 'zone': 'europe-west1-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west1, moving to next region
+Attempting to create instances in europe-central2
+There are 2 zones to try in europe-central2
+Creating instance number 1 of 1 in europe-central2-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-central2-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-central2-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-1 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-central2-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-1', 'zone': 'europe-central2-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-central2, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+Machine type n1-standard-1 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 1 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west4
+There are 3 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-a, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west4-a.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-a' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-1 VM instance with 1 nvidia-tesla-v100 accelerator(s) is currently unavailable in the europe-west4-a zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-v100:1', 'vmType': 'n1-standard-1', 'zone': 'europe-west4-a', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-p4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-p4 GPUs with a maximum of 4 per instance
+Machine type n1-standard-1 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 1 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west4
+There are 2 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west4-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-1 VM instance with 1 nvidia-tesla-p4 accelerator(s) is currently unavailable in the europe-west4-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-p4:1', 'vmType': 'n1-standard-1', 'zone': 'europe-west4-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-b has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-d has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+Machine type n1-standard-1 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 2 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west1
+There are 2 zones to try in europe-west1
+Creating instance number 1 of 1 in europe-west1-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+Success: demo-instance-1-europe-west1-b created
+1 created, 0 more to create
+Reached the desired number of instances
+Deleting 1 instances.
+Deleting instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-d has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west3-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west2-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west2-a has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-central2-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-central2-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+Machine type n1-standard-2 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 5 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west2
+There are 2 zones to try in europe-west2
+Creating instance number 1 of 1 in europe-west2-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west2-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west2-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-2 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west2-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-2', 'zone': 'europe-west2-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west2, moving to next region
+Attempting to create instances in europe-west3
+There are 1 zones to try in europe-west3
+Creating instance number 1 of 1 in europe-west3-b, zone 1 out of 1 attempted.
+Creating instance demo-instance-1-europe-west3-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west3-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-2 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west3-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-2', 'zone': 'europe-west3-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west3, moving to next region
+Attempting to create instances in europe-west4
+There are 3 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-a, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west4-a.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-a' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-2 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west4-a zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-2', 'zone': 'europe-west4-a', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+Attempting to create instances in europe-west1
+There are 3 zones to try in europe-west1
+Creating instance number 1 of 1 in europe-west1-b, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west1-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-2 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west1-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-2', 'zone': 'europe-west1-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west1, moving to next region
+Attempting to create instances in europe-central2
+There are 2 zones to try in europe-central2
+Creating instance number 1 of 1 in europe-central2-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-central2-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-central2-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-2 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-central2-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-2', 'zone': 'europe-central2-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-central2, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+Machine type n1-standard-2 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 1 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west4
+There are 3 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-a, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west4-a.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-a' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-2 VM instance with 1 nvidia-tesla-v100 accelerator(s) is currently unavailable in the europe-west4-a zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-v100:1', 'vmType': 'n1-standard-2', 'zone': 'europe-west4-a', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-p4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-p4 GPUs with a maximum of 4 per instance
+Machine type n1-standard-2 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 1 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west4
+There are 2 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west4-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-2 VM instance with 1 nvidia-tesla-p4 accelerator(s) is currently unavailable in the europe-west4-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-p4:1', 'vmType': 'n1-standard-2', 'zone': 'europe-west4-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-b has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-d has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+Machine type n1-standard-2 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 2 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west1
+There are 2 zones to try in europe-west1
+Creating instance number 1 of 1 in europe-west1-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+Success: demo-instance-1-europe-west1-b created
+1 created, 0 more to create
+Reached the desired number of instances
+Deleting 1 instances.
+Deleting instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-d has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west3-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west2-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west2-a has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-central2-b has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-central2-c has nvidia-tesla-t4 GPUs with a maximum of 4 per instance
+Machine type n1-standard-4 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 5 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west2
+There are 2 zones to try in europe-west2
+Creating instance number 1 of 1 in europe-west2-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west2-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west2-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west2-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-4', 'zone': 'europe-west2-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west2, moving to next region
+Attempting to create instances in europe-west3
+There are 1 zones to try in europe-west3
+Creating instance number 1 of 1 in europe-west3-b, zone 1 out of 1 attempted.
+Creating instance demo-instance-1-europe-west3-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west3-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west3-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-4', 'zone': 'europe-west3-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west3, moving to next region
+Attempting to create instances in europe-west4
+There are 3 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-a, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west4-a.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-a' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west4-a zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-4', 'zone': 'europe-west4-a', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+Attempting to create instances in europe-west1
+There are 3 zones to try in europe-west1
+Creating instance number 1 of 1 in europe-west1-b, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west1-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-west1-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-4', 'zone': 'europe-west1-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west1, moving to next region
+Attempting to create instances in europe-central2
+There are 2 zones to try in europe-central2
+Creating instance number 1 of 1 in europe-central2-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-central2-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-central2-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-t4 accelerator(s) is currently unavailable in the europe-central2-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-t4:1', 'vmType': 'n1-standard-4', 'zone': 'europe-central2-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-central2, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-v100 GPUs with a maximum of 8 per instance
+Machine type n1-standard-4 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 1 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west4
+There are 3 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-a, zone 1 out of 3 attempted.
+Creating instance demo-instance-1-europe-west4-a.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-a' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-v100 accelerator(s) is currently unavailable in the europe-west4-a zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-v100:1', 'vmType': 'n1-standard-4', 'zone': 'europe-west4-a', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-b has nvidia-tesla-p4 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west4-c has nvidia-tesla-p4 GPUs with a maximum of 4 per instance
+Machine type n1-standard-4 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 1 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west4
+There are 2 zones to try in europe-west4
+Creating instance number 1 of 1 in europe-west4-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west4-b.
+Waiting for operation to finish...
+done.
+{'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/tesztelek-335913/zones/europe-west4-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-p4 accelerator(s) is currently unavailable in the europe-west4-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-p4:1', 'vmType': 'n1-standard-4', 'zone': 'europe-west4-b', 'zonesAvailable': ''}}}]}]}
+Quota exceeded in region europe-west4, moving to next region
+All regions attempted, there are not enough resources to create the desired 1 instances, 0 created
+Deleting 0 instances.
+Processing selected zones from ['europe-west1-b', 'europe-west1-c', 'europe-west1-d', 'europe-west2-a', 'europe-west2-b', 'europe-west3-b', 'europe-west4-c', 'europe-west4-b', 'europe-west4-a', 'europe-central2-b', 'europe-central2-c']
+1 GPUs requested per instance, europe-west4-a has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-b has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+1 GPUs requested per instance, europe-west1-d has nvidia-tesla-p100 GPUs with a maximum of 4 per instance
+Machine type n1-standard-4 is available in the following regions: ['europe-west2', 'europe-west3', 'europe-west4', 'europe-west1', 'europe-central2']
+There are 2 regions to try that match the GPU type and machine type configuration.
+Attempting to create instances in europe-west1
+There are 2 zones to try in europe-west1
+Creating instance number 1 of 1 in europe-west1-b, zone 1 out of 2 attempted.
+Creating instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+Success: demo-instance-1-europe-west1-b created
+1 created, 0 more to create
+Reached the desired number of instances
+Deleting 1 instances.
+Deleting instance demo-instance-1-europe-west1-b.
+Waiting for operation to finish...
+done.
+(.venv) zoli0@local:~/gpu-finder$ 

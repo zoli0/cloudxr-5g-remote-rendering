@@ -64,7 +64,9 @@ TODO
 
 ## Log parsing and evaluation
 
-TODO
+The collected logs, parsing scripts, and generated figures can be found in the `log-parse` folder.
+
+![jitter boxplot](log-parse/figures/jitter_boxplot.png)
 
 ## GPU Finder
 

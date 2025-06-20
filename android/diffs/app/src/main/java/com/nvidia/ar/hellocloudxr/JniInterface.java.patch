@@ -1,0 +1,22 @@
+diff --git a/app/src/main/java/com/nvidia/ar/hellocloudxr/JniInterface.java b/app/src/main/java/com/nvidia/ar/hellocloudxr/JniInterface.java
+index d38a857..16e6fb1 100644
+--- a/app/src/main/java/com/nvidia/ar/hellocloudxr/JniInterface.java
++++ b/app/src/main/java/com/nvidia/ar/hellocloudxr/JniInterface.java
+@@ -65,6 +65,7 @@ public class JniInterface {
+ 
+   public static native void setArgs(long nativeApplication, String jargs);
+   public static native String getServerIp(long nativeApplication);
++  //public static native void setStatRefreshInterval(long nativeApplication, float interval);
+ 
+   public static native void onResume(long nativeApplication, Context context, Activity activity);
+ 
+@@ -84,6 +85,9 @@ public class JniInterface {
+   /** OnTouch event, called on the OpenGL thread. */
+   public static native void onTouched(long nativeApplication, float x, float y, boolean longPress);
+ 
++  public static native void onKeyEvent(long nativeApplication, int keyCode, int keyAction);
++ // public static native String getStatText(long nativeApplication);
++
+   /** Get plane count in current session. Used to disable the "searching for surfaces" snackbar. */
+   public static native boolean hasDetectedPlanes(long nativeApplication);
+ 

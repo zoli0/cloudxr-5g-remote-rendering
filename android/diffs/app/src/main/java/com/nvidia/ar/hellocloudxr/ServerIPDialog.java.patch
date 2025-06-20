@@ -1,0 +1,78 @@
+diff --git a/app/src/main/java/com/nvidia/ar/hellocloudxr/ServerIPDialog.java b/app/src/main/java/com/nvidia/ar/hellocloudxr/ServerIPDialog.java
+index c3ee4d9..03d1998 100644
+--- a/app/src/main/java/com/nvidia/ar/hellocloudxr/ServerIPDialog.java
++++ b/app/src/main/java/com/nvidia/ar/hellocloudxr/ServerIPDialog.java
+@@ -42,41 +42,60 @@ public class ServerIPDialog {
+         return dialogInstance.isShowing();
+     }
+ 
+-  public static void show(HelloArActivity activity, String prevIp) {
++  public static void show(HelloArActivity activity, String prevIp, float prevStatRefreshInterval) {
+     final HelloArActivity thiz = activity;
+     final View startupDialog = thiz.getLayoutInflater().inflate(R.layout.startup_dialog, null);
+     final EditText serverIp = startupDialog.findViewById(R.id.server_ip);
++    final EditText statRefreshInterval = startupDialog.findViewById(R.id.stat_refresh_interval);
++    final Button connectBtn = startupDialog.findViewById(R.id.connect_btn);
++    final Button exitBtn = startupDialog.findViewById(R.id.exit_btn);
+ 
+     serverIp.setHint("127.0.0.1");
+     serverIp.setText(prevIp);
++    statRefreshInterval.setText(Float.toString(prevStatRefreshInterval));
+ 
+     AlertDialog.Builder builder = new AlertDialog.Builder(activity)
+         .setTitle("CloudXR Options")
+         .setMessage("")
+-        .setView(startupDialog)
+-        .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+-          public void onClick(DialogInterface dialog, int whichButton) {
++        .setView(startupDialog);
++//        .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
++//          public void onClick(DialogInterface dialog, int whichButton) {
++    connectBtn.setOnClickListener(v -> {
+             dialogInstance.dismiss();
+ 
+             String ip = serverIp.getText().toString();
++            boolean floatParsed = true;
++            float interval = 1.0f;
++            try {
++                interval = Float.parseFloat(statRefreshInterval.getText().toString());
++            } catch (NumberFormatException e) {
++                floatParsed = false;
++            }
+ 
+             if (Patterns.IP_ADDRESS.matcher(ip).matches()) {
+-                thiz.setParams(ip);
+-                Handler handler = new Handler(Looper.getMainLooper());
+-                handler.post(() -> thiz.doResume());
++                if (floatParsed) {
++                    thiz.setParams(ip);
++                    thiz.setStatRefreshInterval(interval);
++                    Handler handler = new Handler(Looper.getMainLooper());
++                    handler.post(() -> thiz.doResume());
++                } else {
++                    Toast.makeText(thiz, "Invalid interval. Try again.", Toast.LENGTH_SHORT).show();
++                    ServerIPDialog.show(thiz, ip, prevStatRefreshInterval);
++                }
+             } else {
+               Toast.makeText(thiz, "Invalid IP address. Try again.", Toast.LENGTH_SHORT).show();
+-              ServerIPDialog.show(thiz, prevIp);
++              ServerIPDialog.show(thiz, prevIp, prevStatRefreshInterval);
+             }
+-          }
+-        })
+-        .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+-          public void onClick(DialogInterface dialog, int whichButton) {
++//          }
++        });
++//        .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
++//          public void onClick(DialogInterface dialog, int whichButton) {
++    exitBtn.setOnClickListener(v -> {
+               dialogInstance.dismiss();
+ 
+               Handler handler = new Handler(Looper.getMainLooper());
+               handler.post(() -> thiz.finish());
+-          }
++//          }
+         });
+ 
+     dialogInstance = builder.create();

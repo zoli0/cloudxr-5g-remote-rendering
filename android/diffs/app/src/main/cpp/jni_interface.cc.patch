@@ -1,0 +1,34 @@
+diff --git a/app/src/main/cpp/jni_interface.cc b/app/src/main/cpp/jni_interface.cc
+index ded17d8..9406888 100644
+--- a/app/src/main/cpp/jni_interface.cc
++++ b/app/src/main/cpp/jni_interface.cc
+@@ -133,6 +133,11 @@ JNI_METHOD(jstring, getServerIp)
+   return env->NewStringUTF(ip.c_str());
+ }
+ 
++/*JNI_METHOD(void, setStatRefreshInterval)
++(JNIEnv *env, jclass, jlong native_application, jfloat interval) {
++  native(native_application)->setStatRefreshInterval(interval);
++}*/
++
+ JNI_METHOD(void, onResume)
+ (JNIEnv *env, jclass, jlong native_application, jobject context,
+  jobject activity) {
+@@ -162,6 +167,17 @@ JNI_METHOD(void, onTouched)
+   native(native_application)->OnTouched(x, y, longPress);
+ }
+ 
++JNI_METHOD(void, onKeyEvent)
++(JNIEnv *, jclass, jlong native_application, jint keyCode, jint keyAction) {
++  native(native_application)->OnKeyEvent(keyCode, keyAction);
++}
++
++/*JNI_METHOD(jstring, getStatText)
++(JNIEnv *env, jclass, jlong native_application) {
++  const std::string stat = native(native_application)->GetStatText();
++  return env->NewStringUTF(stat.c_str());
++}*/
++
+ JNI_METHOD(jboolean, hasDetectedPlanes)
+ (JNIEnv *, jclass, jlong native_application) {
+   return static_cast<jboolean>(

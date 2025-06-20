@@ -38,7 +38,7 @@ I want to thank Simonyi Károly Collegium for providing this extra hardware for 
 
 ## Tested models
 
-All files in the `models` folder are either from CloudXR SDK or [Poly Haven](https://polyhaven.com/models), licensed under CC0 1.0. To view a copy of this license, visit <https://creativecommons.org/publicdomain/zero/1.0/>
+All files in the [`models`](models/) folder are either from CloudXR SDK or [Poly Haven](https://polyhaven.com/models), licensed under CC0 1.0. To view a copy of this license, visit <https://creativecommons.org/publicdomain/zero/1.0/>
 
 Models from Poly Haven should be downloaded as `.blend` files, you can export them to `.obj` files using Blender.
 You can also make more complex models using these models and export them into one `.obj` file.
@@ -60,11 +60,11 @@ Statistics are from Blender.
 
 The Android app used in my theis is based on the [NVIDIA hello_cloudxr_c sample](https://github.com/NVIDIA/cloudxr-arcore/tree/master/arcore-android-sdk/samples/hello_cloudxr_c).
 
-TODO
+My patches for the code are in the [`android`](android/) folder.
 
 ## Log parsing and evaluation
 
-The collected logs, parsing scripts, and generated figures can be found in the `log-parse` folder.
+The collected logs, parsing scripts, and generated figures can be found in the [`log-parse`](log-parse/) folder.
 
 ![jitter boxplot](log-parse/figures/jitter_boxplot.png)
 
@@ -72,4 +72,4 @@ The collected logs, parsing scripts, and generated figures can be found in the `
 
 I used [GPU Finder](https://github.com/doitintl/gpu-finder/) to find available GPUs to run CloudXR in Google Cloud.
 
-The patches and the output can be found in the `gpu-finder` folder.
+The patches and the output can be found in the [`gpu-finder`](gpu-finder/) folder.

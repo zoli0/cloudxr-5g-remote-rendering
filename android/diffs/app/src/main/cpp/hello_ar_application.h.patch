@@ -1,0 +1,16 @@
+diff --git a/app/src/main/cpp/hello_ar_application.h b/app/src/main/cpp/hello_ar_application.h
+index 6ed28a5..c1254fb 100644
+--- a/app/src/main/cpp/hello_ar_application.h
++++ b/app/src/main/cpp/hello_ar_application.h
+@@ -96,6 +96,11 @@ class HelloArApplication {
+   // @param longPress: a long press occured.
+   void OnTouched(float x, float y, bool longPress);
+ 
++  // OnKeyEvent TODO: document
++  void OnKeyEvent(int keyCode, int keyAction);
++  //char *GetStatText();
++  //void setStatRefreshInterval(float interval);
++
+   // Returns true if any planes have been detected.  Used for hiding the
+   // "searching for planes" snackbar.
+   bool HasDetectedPlanes() const {

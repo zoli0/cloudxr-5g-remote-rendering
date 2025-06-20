@@ -1,0 +1,293 @@
+diff --git a/app/src/main/cpp/hello_ar_application.cc b/app/src/main/cpp/hello_ar_application.cc
+index 20c7428..64ae8c0 100644
+--- a/app/src/main/cpp/hello_ar_application.cc
++++ b/app/src/main/cpp/hello_ar_application.cc
+@@ -73,13 +73,15 @@ class ARLaunchOptions : public CloudXR::ClientOptions {
+ public:
+     bool using_env_lighting_;
+     float res_factor_;
++    float stats_interval_;
+ 
+     ARLaunchOptions() :
+       ClientOptions(),
+       using_env_lighting_(true), // default ON
+       // default to 0.75 reduced size, as many devices can't handle full throughput.
+       // 0.75 chosen as WAR value for steamvr buffer-odd-size bug, works on galaxytab s6 + pixel 2
+-      res_factor_(0.75f)
++      res_factor_(0.75f),
++      stats_interval_(1.0f)
+     {
+       AddOption("env-lighting", "el", true, "Send client environment lighting data to server.  1 enables, 0 disables.",
+                  HANDLER_LAMBDA_FN
+@@ -101,6 +103,15 @@ public:
+                     CXR_LOGI("Resolution factor = %0.2f", res_factor_);
+                     return ParseStatus_Success;
+                  });
++      AddOption("stats-interval", "si", true, "Statistics interval in seconds.",
++                 HANDLER_LAMBDA_FN
++                 {
++                    float interval = std::stof(tok);
++                    if (interval >= 0.5f && interval <= 10.0f)
++                      stats_interval_ = interval;
++                    CXR_LOGI("Statistics interval = %0.2f", stats_interval_);
++                    return ParseStatus_Success;
++                 });
+     }
+ };
+ 
+@@ -121,6 +132,69 @@ extern "C" void dispatchLogMsg(cxrLogLevel level, cxrMessageCategory category, v
+     va_end(aptr);
+ }
+ 
++static constexpr int inputCount = 21;
++
++static const char *inputPaths[inputCount] =
++  {
++    "/input/system/click",
++    "/input/application_menu/click", // this is carried over from old system and might be remove, it's not a button binding, more action.
++    "/input/trigger/click",
++    "/input/trigger/touch",
++    "/input/trigger/value",
++    "/input/grip/click",
++    "/input/grip/touch",
++    "/input/grip/value",
++    "/input/thumbstick/click",
++    "/input/thumbstick/touch",
++    "/input/thumbstick/x",
++    "/input/thumbstick/y",
++    "/input/a/click",
++    "/input/b/click",
++    "/input/x/click", // Touch has X/Y on L controller, so we'll map the raw strings.
++    "/input/y/click",
++    "/input/a/touch",
++    "/input/b/touch",
++    "/input/x/touch",
++    "/input/y/touch",
++    "/input/thumb_rest/touch",
++  };
++
++cxrInputValueType inputValues[inputCount] =
++  {
++    cxrInputValueType_boolean, //input/system/click
++    cxrInputValueType_boolean, //input/application_menu/click
++    cxrInputValueType_boolean, //input/trigger/click
++    cxrInputValueType_boolean, //input/trigger/touch
++    cxrInputValueType_float32, //input/trigger/value
++    cxrInputValueType_boolean, //input/grip/click
++    cxrInputValueType_boolean, //input/grip/touch
++    cxrInputValueType_float32, //input/grip/value
++    cxrInputValueType_boolean, //input/thumbstick/click
++    cxrInputValueType_boolean, //input/thumbstick/touch
++    cxrInputValueType_float32, //input/thumbstick/x
++    cxrInputValueType_float32, //input/thumbstick/y
++    cxrInputValueType_boolean, //input/a/click
++    cxrInputValueType_boolean, //input/b/click
++    cxrInputValueType_boolean, //input/x/click
++    cxrInputValueType_boolean, //input/y/click
++    cxrInputValueType_boolean, //input/a/touch
++    cxrInputValueType_boolean, //input/b/touch
++    cxrInputValueType_boolean, //input/x/touch
++    cxrInputValueType_boolean, //input/y/touch
++    cxrInputValueType_boolean, //input/thumb_rest/touch
++  };
++
++  static constexpr int inputCharsCount = 11;
++
++  bool lastButtonDown[inputCharsCount] = {};
++  bool currButtonDown[inputCharsCount] = {};
++
++  const char inputChars[inputCharsCount] = {'a', 'b', 'x', 'y', 'g', 'r', 't', 'i', 'j', 'k', 'l'};
++  const int inputIndex[inputCharsCount] = { 12, 13, 14, 15, 7, -10, 10, 11, -10, -11, 10 };
++  const int conIndex[inputCharsCount] = { 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1 };
++
++  //char stat_text[1024 + 1] = {};
++
+ class HelloArApplication::CloudXRClient : public oboe::AudioStreamDataCallback {
+  public:
+     CloudXRClient(const std::string &outputPath) {
+@@ -138,6 +212,9 @@ class HelloArApplication::CloudXRClient : public oboe::AudioStreamDataCallback {
+   // CloudXR interface callbacks
+   void TriggerHaptic(const cxrHapticFeedback*) {}
+ 
++  cxrControllerHandle m_newControllers[CXR_NUM_CONTROLLERS] = {};
++  bool hideControllers = true;
++
+   void GetTrackingState(cxrVRTrackingState* state) {
+     *state = {};
+ 
+@@ -152,6 +229,95 @@ class HelloArApplication::CloudXRClient : public oboe::AudioStreamDataCallback {
+           kQueueLen - 1 : (current_idx_ - 1)%kQueueLen;
+       cxrMatrixToVecQuat(pose_matrix_ + idx, &(state->hmd.pose.position), &(state->hmd.pose.rotation));
+     }
++
++    // init
++    for (int i = 0; i < CXR_NUM_CONTROLLERS; i++)
++    {
++      auto &c = state->controller[i];
++      c.pose.poseIsValid = cxrTrue;
++      c.pose.deviceIsConnected = cxrTrue;
++      c.pose.trackingResult = cxrTrackingResult_Running_OK;
++      c.pose.position = cxrVector3{ 0, 0, 0 };
++      c.pose.rotation = cxrQuaternion{ 1, 0, 0, 0 };
++    }
++
++    // left
++    auto &ctrlLeft = state->controller[0];
++    ctrlLeft.pose = state->hmd.pose;
++    ctrlLeft.pose.position.v[0] -= 0.2f;
++    ctrlLeft.pose.position.v[1] -= (0.5f - (hideControllers ? 1.0f : 0.0f));
++    ctrlLeft.pose.position.v[2] -= 1.0f;
++    ctrlLeft.pose.poseIsValid = ctrlLeft.pose.deviceIsConnected = cxrTrue;
++
++    // right
++    auto& ctrlRight = state->controller[1];
++    ctrlRight.pose = state->hmd.pose;
++    ctrlRight.pose.position.v[0] += 0.2f;
++    ctrlRight.pose.position.v[1] -= (0.5f - (hideControllers ? 1.0f : 0.0f));
++    ctrlRight.pose.position.v[2] -= 1.0f;
++    ctrlRight.pose.poseIsValid = ctrlRight.pose.deviceIsConnected = cxrTrue;
++
++    // register controllers
++    for (int i = 0; i < CXR_NUM_CONTROLLERS; i++)
++    {
++      if (!m_newControllers[i])
++      {
++        cxrControllerDesc desc = {};
++        desc.id = i;
++        desc.role = i ? "cxr://input/hand/right" : "cxr://input/hand/left";
++        desc.controllerName = "Generic";
++        desc.inputCount = inputCount;
++        desc.inputPaths = inputPaths;
++        desc.inputValueTypes = inputValues;
++        cxrError e = cxrAddController(cloudxr_receiver_, &desc, &m_newControllers[i]);
++        if(e != cxrError_Success)
++        {
++          CXR_LOGE("error: could not add controller.");
++        }
++      }
++    }
++
++    // events
++    cxrControllerEvent events[CXR_NUM_CONTROLLERS][64] = {};
++    uint32_t eventCount[CXR_NUM_CONTROLLERS] = {};
++
++    for (int i = 0; i < inputCharsCount; i++)
++    {
++      bool currDown = currButtonDown[i];
++      bool lastDown = lastButtonDown[i];
++      if ((currDown != lastDown) || (currDown && lastDown))
++      { // send event.
++        lastButtonDown[i] = currDown;
++        cxrControllerEvent& e = events[conIndex[i]][eventCount[conIndex[i]]++];
++        e.clientTimeNS = 1234;
++        const int inin = abs(int(inputIndex[i]));
++        e.clientInputIndex = inin;
++        if (inputValues[inin] == cxrInputValueType_boolean)
++        {
++          e.inputValue.valueType = cxrInputValueType_boolean;
++          e.inputValue.vBool = currDown ? cxrTrue : cxrFalse;
++        }
++        else // float
++        {
++          e.inputValue.valueType = cxrInputValueType_float32;
++          e.inputValue.vF32 = currDown ? 0.5f : 0.0f;
++          if (inputIndex[i]<0) e.inputValue.vF32 *= -1.0f; // handle 2d axes
++        }
++      }
++    }
++
++    // fire events
++    for (int i=0; i<CXR_NUM_CONTROLLERS; i++)
++    {
++      if (eventCount[i])
++      {
++        cxrError err = cxrFireControllerEvents(cloudxr_receiver_, m_newControllers[i], events[i], eventCount[i]);
++        if (err != cxrError_Success)
++        {
++          CXR_LOGE("ERROR: cxrFireControllerEvents: '%s'", cxrErrorString(err));
++        }
++      }
++    }
+   }
+ 
+   cxrBool RenderAudio(const cxrAudioFrame *audioFrame)
+@@ -539,8 +705,6 @@ class HelloArApplication::CloudXRClient : public oboe::AudioStreamDataCallback {
+   }
+ 
+   void Stats() {
+-    // Log connection stats every 3 seconds
+-    const int STATS_INTERVAL_SEC = 3;
+     frames_until_stats_--;
+     if (frames_until_stats_ <= 0 &&
+         cxrGetConnectionStats(cloudxr_receiver_, &stats_) == cxrError_Success)
+@@ -588,8 +752,42 @@ class HelloArApplication::CloudXRClient : public oboe::AudioStreamDataCallback {
+         }
+       }
+ 
+-      CXR_LOGI("%s    %s    %s", statsString, qualityString, reasonString);
+-      frames_until_stats_ = (int)stats_.framesPerSecond * STATS_INTERVAL_SEC;
++      // cxrNetworkInterface???
++      CXR_LOGI("cxrConnectionStats "
++        "{ "
++        "\"framesPerSecond\": %g, "
++        "\"frameDeliveryTimeMs\": %g, "
++        "\"frameQueueTimeMs\": %g, "
++        "\"frameLatchTimeMs\": %g, "
++        "\"bandwidthAvailableKbps\": %u, "
++        "\"bandwidthUtilizationKbps\": %u, "
++        "\"bandwidthUtilizationPercent\": %u, "
++        "\"roundTripDelayMs\": %u, "
++        "\"jitterUs\": %u, "
++        "\"totalPacketsReceived\": %u, "
++        "\"totalPacketsLost\": %u, "
++        "\"totalPacketsDropped\": %u, "
++        "\"quality\": %d, "
++        "\"qualityReasons\": %u "
++        "}",
++        stats_.framesPerSecond,
++        stats_.frameDeliveryTimeMs,
++        stats_.frameQueueTimeMs,
++        stats_.frameLatchTimeMs,
++        stats_.bandwidthAvailableKbps,
++        stats_.bandwidthUtilizationKbps,
++        stats_.bandwidthUtilizationPercent,
++        stats_.roundTripDelayMs,
++        stats_.jitterUs,
++        stats_.totalPacketsReceived,
++        stats_.totalPacketsLost,
++        stats_.totalPacketsDropped,
++        stats_.quality,
++        stats_.qualityReasons
++      );
++      //CXR_LOGI("%s    %s    %s", statsString, qualityString, reasonString);
++      //snprintf(stat_text, 1024, "%s\n%s\n%s", statsString, qualityString, reasonString);
++      frames_until_stats_ = (int)(stats_.framesPerSecond * launch_options_.stats_interval_);
+     }
+   }
+ 
+@@ -1419,4 +1617,25 @@ void HelloArApplication::OnTouched(float x, float y, bool longPress) {
+     }
+   }
+ }
++
++void HelloArApplication::OnKeyEvent(int keyCode, int keyAction) {
++  //CXR_LOGI("cc OnKeyEvent code: %d, char+68: %c, action: %s", keyCode, keyCode + 68, keyAction == 0 ? "down" : "up");
++  if (keyCode >= 29 && keyCode <= 54) {
++    char keyChar = keyCode + 68;
++    for (int i = 0; i < inputCharsCount; i++) {
++      if (inputChars[i] == keyChar) {
++        currButtonDown[i] = (keyAction == 0);
++      }
++    }
++  }
++}
++
++/*char *HelloArApplication::GetStatText() {
++  return stat_text;
++}*=
++
++/*void HelloArApplication::setStatRefreshInterval(float interval) {
++  CXR_LOGI("cc setStatRefreshInterval: %f", interval);
++  stats_interval = interval;
++}*/
+ }  // namespace hello_ar

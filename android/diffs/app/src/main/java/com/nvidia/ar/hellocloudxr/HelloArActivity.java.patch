@@ -1,0 +1,115 @@
+diff --git a/app/src/main/java/com/nvidia/ar/hellocloudxr/HelloArActivity.java b/app/src/main/java/com/nvidia/ar/hellocloudxr/HelloArActivity.java
+index 384062c..9a659eb 100644
+--- a/app/src/main/java/com/nvidia/ar/hellocloudxr/HelloArActivity.java
++++ b/app/src/main/java/com/nvidia/ar/hellocloudxr/HelloArActivity.java
+@@ -47,10 +47,12 @@ import android.support.design.widget.Snackbar;
+ import android.support.v7.app.AppCompatActivity;
+ import android.util.Log;
+ import android.view.GestureDetector;
++import android.view.KeyEvent;
+ import android.view.MotionEvent;
+ import android.view.View;
+ import android.view.WindowManager;
+ import android.widget.Toast;
++import android.widget.TextView;
+ import javax.microedition.khronos.egl.EGLConfig;
+ import javax.microedition.khronos.opengles.GL10;
+ import android.app.AlertDialog;
+@@ -71,6 +73,7 @@ public class HelloArActivity extends AppCompatActivity
+ 
+   SharedPreferences prefs = null;
+   final String ipAddrPref = "cxr_last_server_ip_addr";
++  final String statRefreshIntervalPref = "cxr_last_refresh_interval";
+ 
+   private GLSurfaceView surfaceView;
+   private String cmdlineFromIntent = "";
+@@ -86,6 +89,8 @@ public class HelloArActivity extends AppCompatActivity
+ 
+   private Snackbar loadingMessageSnackbar;
+   private Handler planeStatusCheckingHandler;
++  //private TextView statTextView;
++
+   private final Runnable planeStatusCheckingRunnable =
+       new Runnable() {
+         @Override
+@@ -114,6 +119,8 @@ public class HelloArActivity extends AppCompatActivity
+     prefs = getSharedPreferences("cloud_xr_prefs", Context.MODE_PRIVATE);
+ 
+     setContentView(R.layout.activity_main);
++    //statTextView = findViewById(R.id.stattext);
++
+     surfaceView = (GLSurfaceView) findViewById(R.id.surfaceview);
+ 
+     // Set up tap listener.
+@@ -168,6 +175,14 @@ public class HelloArActivity extends AppCompatActivity
+     JniInterface.setArgs(nativeApplication, "-s " + ip);
+   }
+ 
++  public void setStatRefreshInterval(float interval) {
++    SharedPreferences.Editor prefedit = prefs.edit();
++    prefedit.putFloat(statRefreshIntervalPref, interval);
++    prefedit.commit();
++
++    JniInterface.setArgs(nativeApplication, "-si " + interval);
++  }
++
+   public void doResume() {
+     JniInterface.onResume(nativeApplication, getApplicationContext(),this);
+     surfaceView.onResume();
+@@ -198,13 +213,15 @@ public class HelloArActivity extends AppCompatActivity
+     // we're done with permission checks, so can tell native now is safe to
+     // try to load files and such.
+     JniInterface.handleLaunchOptions(nativeApplication, cmdlineFromIntent);
++    Log.v(TAG, "checkLaunchOptions str: "+ cmdlineFromIntent);
+ 
+     // check if the native code already has a server IP, and if so
+     // we will skip presenting the IP entry dialog for now...
+     String jniIpAddr = JniInterface.getServerIp(nativeApplication);
+     if (jniIpAddr.isEmpty()) {
+       String prevIP = prefs.getString(ipAddrPref, "");
+-      ServerIPDialog.show(this, prevIP);
++      float prevStatRefreshInterval = prefs.getFloat(statRefreshIntervalPref, 1.0f);
++      ServerIPDialog.show(this, prevIP, prevStatRefreshInterval);
+     } else {
+       doResume();
+     }
+@@ -310,6 +327,12 @@ public class HelloArActivity extends AppCompatActivity
+           }
+         });
+       }
++      /*if (statTextView != null) {
++        String statText = JniInterface.getStatText(nativeApplication);
++        runOnUiThread(() -> {
++          statTextView.setText(statText);
++        });
++      }*/
+     }
+   }
+ 
+@@ -344,4 +367,26 @@ public class HelloArActivity extends AppCompatActivity
+   public void onDisplayChanged(int displayId) {
+     viewportChanged = true;
+   }
++
++  @Override
++  public boolean onKeyDown(int keyCode, KeyEvent e) {
++    if (wasResumed) {
++      //Log.d(TAG, "keydown: [" + keyCode + "] \n");
++      JniInterface.onKeyEvent(
++              nativeApplication, keyCode, KeyEvent.ACTION_DOWN);
++      return true;
++    }
++    return super.onKeyDown(keyCode, e);
++  }
++
++  @Override
++  public boolean onKeyUp(int keyCode, KeyEvent e) {
++    if (wasResumed) {
++      //Log.d(TAG, "keyup: [" + keyCode + "] \n");
++      JniInterface.onKeyEvent(
++              nativeApplication, keyCode, KeyEvent.ACTION_UP);
++      return true;
++    }
++    return super.onKeyUp(keyCode, e);
++  }
+ }
